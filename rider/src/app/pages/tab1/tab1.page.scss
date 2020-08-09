@@ -1,0 +1,25 @@
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+  }
+  ion-header {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    }
+.source {
+    --border-width: 1px;
+    --border-color: #302e2e;
+    --border-radius: 3px;    
+    /*--highlight-color-focused:#ee1616;
+    --color:#ee1616;*/
+  }
+
+  .destination {
+
+    --border-width: 1px;
+    --border-color: #302e2e;
+    --border-radius: 3px;    
+    /*--highlight-color-focused:#ee1616;
+    --color:#3ce74a;*/
+  } 
+

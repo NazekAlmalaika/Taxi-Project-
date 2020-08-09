@@ -1,0 +1,54 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Start new trip!
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+<!--
+  <ion-fab horizontal="start" vertical="top" slot="fixed">
+    <ion-fab-button (click)="openFirst()" color="secondary">
+      <ion-icon md="caret-forward" ios="chevron-forward-circle-outline"></ion-icon>
+    </ion-fab-button>
+    
+  
+  </ion-fab>
+-->
+  <app-google-maps apiKey="AIzaSyAyhE1xXP9QdUs9GrB6TYaYxTq5YYmsrag" 
+  [sourceLocationPlaceId]="sourceLocationPlaceId"
+  [destinationLocationPlaceId]="destinationLocationPlaceId"
+  [displayroute]="displayroute"
+  ngDefaultControl
+  name = "mainMap"
+  ></app-google-maps>
+
+</ion-content>
+
+<ion-footer>
+  <div class="content">    
+  
+    <ion-item class="source" lines="none" mode="md" (click)="searchLocation('source')"> 
+       <ion-input pattern="search" placeholder="source" [(ngModel)]="sourceLocation" ionChange="">
+         <ion-icon name="navigate-outline"></ion-icon>
+       </ion-input> 
+       <!--<ion-searchbar #searchbar mode="ios" animated placeholder="start location" search-icon="navigate-outline"  [(ngModel)]="searchText" (ionChange)="searchGoogleMaps($event)"></ion-searchbar>-->
+
+     </ion-item>
+    <ion-item class="destination" lines="none" button (click)="searchLocation('destination')">
+         <ion-input pattern="search" placeholder="destination"  [(ngModel)]="destinationLocation"ionChange="">
+          <ion-icon name="locate-outline"></ion-icon>
+        </ion-input>
+        <!--<ion-searchbar #destinationSearchbar mode="ios" animated placeholder="destination" search-icon="locate-outline"  [(ngModel)]="searchText" (ionChange)="searchGoogleMaps($event)"></ion-searchbar>-->
+ 
+    </ion-item>
+   
+    
+  </div>
+    
+</ion-footer>

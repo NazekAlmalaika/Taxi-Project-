@@ -1,0 +1,37 @@
+
+
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Search Location</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-item lines="none" mode="md" > 
+    <ion-searchbar #searchbar mode="ios" animated 
+                   placeholder="location" 
+                   ngDefaultControl
+                   name = "searchbar"
+                   search-icon="locate-outline" 
+                   [(ngModel)]="searchText" 
+                   (ionChange)="searchGoogleMaps($event)">   
+                  </ion-searchbar>
+  </ion-item>
+  <ion-item  lines="none" button (click)="chooseOnMap()">
+      <ion-input pattern="search" placeholder="choose On Map" ionChange="">
+        <ion-icon name="map-outline"></ion-icon>
+     </ion-input>
+  </ion-item>
+  <ion-item> 
+    <ion-list #ionlist *ngIf="isSearchLocationAvailable">
+      <ion-item lines="none" button (click)="onLocationResultSelect(location)" *ngFor="let location of searchLocations">
+        <ion-input pattern="search">
+          <ion-icon name="locate-outline"></ion-icon>{{ location.description }}
+        </ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  
+</ion-content>

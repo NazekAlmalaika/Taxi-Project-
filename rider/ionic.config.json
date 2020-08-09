@@ -1,0 +1,8 @@
+{
+  "name": "taxiabanos",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,9 @@
+<ion-item> 
+  <ion-list #ionlist *ngIf="isSearchLocationAvailable">
+    <ion-item lines="none" button (click)="onLocationResultSelect(location)" *ngFor="let location of searchLocations">
+      <ion-input pattern="search">
+        <ion-icon name="locate-outline"></ion-icon>{{ location.description }}
+      </ion-input>
+    </ion-item>
+  </ion-list>
+</ion-item>
