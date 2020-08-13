@@ -10,18 +10,16 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
+
+import { HttpClientModule } from '@angular/common/http';
 import {
   AgmCoreModule
 } from '@agm/core';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminLayoutComponent } from './views/layouts/admin-layout/admin-layout.component';
+import { AdminLayoutModule} from './views/layouts/admin-layout/admin-layout.module';
+import { DbService } from './services/db.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CreateRiderFormComponent } from './components/create-rider-form/create-rider-form.component';
 
 @NgModule({
   imports: [
@@ -32,6 +30,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    HttpClientModule,
+    AdminLayoutModule,
+    NgxPaginationModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })

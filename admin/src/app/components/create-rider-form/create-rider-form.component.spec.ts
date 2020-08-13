@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IconsComponent } from './icons.component';
+import { CreateRiderFormComponent } from './create-rider-form.component';
 
-describe('IconsComponent', () => {
-  let component: IconsComponent;
-  let fixture: ComponentFixture<IconsComponent>;
+describe('CreateRiderFormComponent', () => {
+  let component: CreateRiderFormComponent;
+  let fixture: ComponentFixture<CreateRiderFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IconsComponent ]
+      declarations: [ CreateRiderFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IconsComponent);
+    fixture = TestBed.createComponent(CreateRiderFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

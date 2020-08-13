@@ -1,0 +1,86 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-tabs card-header-danger">
+                      <h4 class="card-title ">Simple Table</h4>
+                      <p class="card-category"> Here is a subtitle for this table</p>
+                      <div class="nav-tabs-navigation justify-content-center">
+                            <div class="nav-tabs-wrapper ">
+                                <span class="nav-tabs-title">Actions:</span>
+                                <ul class="nav nav-tabs justify-content-center" data-tabs="tabs">
+                                    <li class="nav-item">
+                                        <a mat-button class="nav-link" [routerLink]="" (click)="createNewItem()" href="" data-toggle="tab">
+                                            <i class="material-icons">bug_report</i> Create New Rider
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table table-hover">
+                              <thead class=" text-primary">
+                                  <th>
+                                      select
+                                  </th>
+                                  <th>
+                                      Name
+                                  </th>
+                                  <th>
+                                      Country
+                                  </th>
+                                  <th>
+                                      Actions
+                                  </th>
+                              </thead>
+                              
+                              <tbody>
+                                <tr *ngFor="let item of collection.data | paginate: config">
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="" checked>
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td >{{item.id}}</td>
+                                    <td>{{item.value}}</td>
+                                    
+                                    <td class="td-actions text-right">
+                                        <button mat-raised-button type="button" (click)="editItem($event, item)" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                        <button mat-raised-button type="button" (click)="removeItem($event, item)" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                             </tbody>
+                          </table>
+                          <pagination-controls  
+                                            (pageChange)="pageChanged($event)"
+                                            (pageBoundsCorrection)="pageChanged($event)"
+                                            maxSize="9"
+                                            directionLinks="true"
+                                            responsive="true"
+                                            previousLabel="Previous"
+                                            nextLabel="Next"
+                                            screenReaderPaginationLabel="Pagination"
+                                            screenReaderPageLabel="page"
+                                            screenReaderCurrentLabel="You're on page">
+                        </pagination-controls>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
