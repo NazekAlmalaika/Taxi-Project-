@@ -1,14 +1,13 @@
 var mongoose = require("mongoose");
-var User = require('./users');
+var UserModel = require('./userBase');
 
 var RiderSchema = new mongoose.Schema({
-    email: { type: mongoose.Schema.Types.String},
-    userInfo: User,
-  });
+    email: { type: mongoose.Schema.Types.String}
+  }, UserModel.defaultOptions);
 
 
 
-var Rider = mongoose.model('Rider', RiderSchema);
+var Rider = UserModel.UserBase.discriminator('Rider', RiderSchema);
 module.exports = {
   Rider: Rider
 }
