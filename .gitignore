@@ -29,3 +29,7 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+
+/admin/node_modules
+/rider/node_modules
+/backend/node_modules

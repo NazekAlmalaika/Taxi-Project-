@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dbPath = "mongodb://mAdmin:Fohkae7r@localhost/abanostaxi";
+const dbPath = "mongodb://taxiabanos:Fohkae7r@localhost/abanostaxi";
 const options = {
     useNewUrlParser: true,
     useCreateIndex: true,
