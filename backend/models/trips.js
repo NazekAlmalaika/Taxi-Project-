@@ -7,5 +7,6 @@ var TripSchema = new mongoose.Schema({
 var Trip = TripBaseModel.TipBase.discriminator('Trip', TripSchema);
 
 module.exports = {
-  Trip: Trip
+  Trip: Trip,
+  TripSchema: TripSchema
 }

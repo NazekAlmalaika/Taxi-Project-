@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var UserModel = require('./userBase');
 
 var RiderSchema = new mongoose.Schema({
-    email: { type: mongoose.Schema.Types.String}
+ 
   }, UserModel.defaultOptions);
 
 

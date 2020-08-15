@@ -76,6 +76,7 @@ export class RiderManagementComponent implements OnInit {
     });
 
     const dialogRef = this.dialog.open(CreateRiderFormComponent, {
+      minWidth: '80vw',
       data: {name: this.name, animal: this.animal}
     });
 

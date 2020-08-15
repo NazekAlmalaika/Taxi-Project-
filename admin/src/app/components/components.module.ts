@@ -14,6 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CheckMarkAnimatedComponent } from './shared/check-mark-animated/check-mark-animated.component';
 
 @NgModule({
   imports: [
@@ -26,13 +28,16 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     MatTooltipModule,
     NgxPaginationModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    CreateRiderFormComponent
+    CreateRiderFormComponent,
+    CheckMarkAnimatedComponent
   ],
   exports: [
     FooterComponent,

@@ -1,7 +1,7 @@
 
 const DEFUALT_RESULT_COUNT_PER_PAGE = 15;
 const DEFAULT_PAGE = 0;
-var schema = require('../models/schema');
+var entities = require('../models/schema');
 
 /**
  * 
@@ -40,7 +40,8 @@ var schema = require('../models/schema');
 
 module.exports = function(mongoose){
     return {
-        allRiders : async function(req, res) {
+        fetch : async function(req, res) {
+            var entity = req.body.entity
             var page = parseInt(req.params.page);
             var perPage = parseInt(req.params.perPage);
             console.log(page);
@@ -52,10 +53,14 @@ module.exports = function(mongoose){
             if (!page){
                 page  = DEFAULT_PAGE;
             }
+
+            if (!entities[entity]) {
+                res.send(JSON.stringify({ result: 'no matched entity found'})); 
+            }
         
             if(mongoose.connection.readyState == 1){
                 try {
-                    for await (const doc of schema.Rider.find()
+                    for await (const doc of entities[entity].find()
                     .limit(perPage)
                     .skip(perPage * page)
                     .sort({
@@ -74,8 +79,10 @@ module.exports = function(mongoose){
                 res.send(JSON.stringify({ result: []})); 
             }
         },
-        addRider : async function(req, res) {
+        addEntity : async function(req, res) {
             var content = req.body.content;
+            var entity = req.body.entity
+            var object = req.body.object
             var name = req.body.name;
             var uid = req.body.uid;
             var pw = req.body.password;
@@ -83,15 +90,16 @@ module.exports = function(mongoose){
             var email = req.body.email;
             let result = "";
             console.log(req.body);
-            console.log(name);
-            console.log(mobileNumber);
-            console.log(email);
-        
-            try { 
-                var query = { mobileNumber: mobileNumber };
-                var updateOrCreate = await new Promise( function( resolve, reject ) {
-                    var msg = ""
-                    schema.Rider.find(query).exec(async function(err, riders) {
+            console.log(object);
+          
+            if (!entities[entity]) {
+                res.send(JSON.stringify({ result: 'no matched entity found'})); 
+            }
+            var query = req.body.query;
+            var updateOrCreate = await new Promise( function( resolve, reject ) {
+                var msg = ""
+                try { 
+                    entities[entity].find(query).exec(async function(err, riders) {
                         if( riders !== undefined && riders !== null && riders.length>0){
                             msg = "user exists";
                             console.log("user exists");
@@ -102,7 +110,7 @@ module.exports = function(mongoose){
                                 msg = "create new one";
                                 console.log("create new one");
                                 //create new one
-                                var rider = new schema.Rider({name: name, mobileNumber: mobileNumber, password : pw, email: email });
+                                var rider = new entities[entity](object);
                                 await rider.save();
                                 resolve( {'msg' : msg })
                             } else {
@@ -111,38 +119,43 @@ module.exports = function(mongoose){
                             } 
                         }
                     });
-                });
-                result = updateOrCreate.msg;
-            }
-            catch(e) {
-                result = e.message;
-                console.log('Error:', e.message)
-            } 
+                }
+                catch(e) {
+                    msg = e.message;
+                    console.log('Error:', msg)
+                    resolve( {'msg' : msg } )
+                } 
+            });
+            result = updateOrCreate.msg;
             res.writeHead(200, {
                 'Content-Type': 'appliation/json',
             });
             res.end(JSON.stringify({ result: result})); 
         },
         
-        updateRider : async function (req, res)  {
+        updateEntity : async function (req, res)  {
             var content = req.body.content;
+            var entity = req.body.entity
+            var object = req.body.object
             var set = req.body.setValues
             var uid = req.body.uid;
             var mobileNumber = req.body.mobileNumber;
             let result = ""
-            try { 
-                var query = { mobileNumber: mobileNumber };
-                var updateOrCreate = await new Promise( function( resolve, reject ) { 
-                    schema.Rider.where(query).update({ $set: set}).exec(function(err) {
+            var query = req.body.query;
+            var updateOrCreate = await new Promise( function( resolve, reject ) {
+                var msg = ""
+                try { 
+                    entities[entity].where(query).update({ $set: set}).exec(function(err) {
                         resolve({'msg' : "updated"});
                     });
-                });
-                result = updateOrCreate.msg;
-            }
-            catch(e) {
-                result = e.message;
-                console.log('Error:', e.message)
-            } 
+                }
+                catch(e) {
+                    msg = e.message;
+                    console.log('Error:', msg)
+                    resolve( {'msg' : msg } )
+                } 
+            });
+            result = updateOrCreate.msg;
             res.writeHead(200, {
                 'Content-Type': 'appliation/json',
             });
