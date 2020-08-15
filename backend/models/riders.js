@@ -3,7 +3,7 @@ var UserModel = require('./userBase');
 
 var RiderSchema = new mongoose.Schema({
  
-  }, UserModel.defaultOptions);
+}, UserModel.defaultOptions);
 
 
 

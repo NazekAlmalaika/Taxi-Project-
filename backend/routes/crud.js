@@ -1,7 +1,7 @@
 
 const DEFUALT_RESULT_COUNT_PER_PAGE = 15;
 const DEFAULT_PAGE = 0;
-var entities = require('../models/schema');
+var schema = require('../models/schema');
 
 /**
  * 
@@ -39,9 +39,10 @@ var entities = require('../models/schema');
  */
 
 module.exports = function(mongoose){
+
     return {
         fetch : async function(req, res) {
-            var entity = req.body.entity
+            var entity = req.params.entity
             var page = parseInt(req.params.page);
             var perPage = parseInt(req.params.perPage);
             console.log(page);
@@ -54,13 +55,13 @@ module.exports = function(mongoose){
                 page  = DEFAULT_PAGE;
             }
 
-            if (!entities[entity]) {
-                res.send(JSON.stringify({ result: 'no matched entity found'})); 
+            if (!schema.getEntityModel(entity)) {
+                res.end(JSON.stringify({ result: 'no matched entity found'})); 
             }
         
             if(mongoose.connection.readyState == 1){
                 try {
-                    for await (const doc of entities[entity].find()
+                    for await (const doc of schema.getEntityModel(entity).schemaModel.find()
                     .limit(perPage)
                     .skip(perPage * page)
                     .sort({
@@ -72,51 +73,43 @@ module.exports = function(mongoose){
                     res.end();
                  } catch(e) {
                     console.log('Error:', e.message)
-                    res.send(JSON.stringify({ result: []})); 
+                    res.end(JSON.stringify({ result: []})); 
                  } 
                
             } else {
-                res.send(JSON.stringify({ result: []})); 
+                res.end(JSON.stringify({ result: []})); 
             }
         },
         addEntity : async function(req, res) {
-            var content = req.body.content;
-            var entity = req.body.entity
+            var entity = req.params.entity
             var object = req.body.object
-            var name = req.body.name;
-            var uid = req.body.uid;
-            var pw = req.body.password;
-            var mobileNumber = req.body.mobileNumber;
-            var email = req.body.email;
+            var query = req.body.query;
             let result = "";
+
             console.log(req.body);
             console.log(object);
           
-            if (!entities[entity]) {
-                res.send(JSON.stringify({ result: 'no matched entity found'})); 
+            if (!schema.getEntityModel(entity)) {
+                res.end(JSON.stringify({ result: 'no matched entity found'})); 
             }
-            var query = req.body.query;
+          
             var updateOrCreate = await new Promise( function( resolve, reject ) {
                 var msg = ""
                 try { 
-                    entities[entity].find(query).exec(async function(err, riders) {
+                    schema.getEntityModel(entity).schemaModel.find(query).exec(async function(err, riders) {
                         if( riders !== undefined && riders !== null && riders.length>0){
                             msg = "user exists";
                             console.log("user exists");
                             console.log(riders);
                             resolve( {'msg' : msg } )
                         } else {
-                            if(name || mobileNumber || email) {
-                                msg = "create new one";
-                                console.log("create new one");
-                                //create new one
-                                var rider = new entities[entity](object);
-                                await rider.save();
-                                resolve( {'msg' : msg })
-                            } else {
-                                msg = "no data to be created";
-                                resolve( {'msg' : msg } )
-                            } 
+                            msg = "create new one";
+                            console.log("create new one");
+                            //create new one
+                            var model = schema.getEntityModel(entity).schemaModel;
+                            var rider = new model(object);
+                            await rider.save();
+                            resolve( {'msg' : msg })
                         }
                     });
                 }
@@ -135,17 +128,20 @@ module.exports = function(mongoose){
         
         updateEntity : async function (req, res)  {
             var content = req.body.content;
-            var entity = req.body.entity
+            var entity = req.params.entity
             var object = req.body.object
             var set = req.body.setValues
             var uid = req.body.uid;
             var mobileNumber = req.body.mobileNumber;
             let result = ""
             var query = req.body.query;
+            if (!schema.getEntityModel(entity)) {
+                res.end(JSON.stringify({ result: 'no matched entity found'})); 
+            }
             var updateOrCreate = await new Promise( function( resolve, reject ) {
                 var msg = ""
                 try { 
-                    entities[entity].where(query).update({ $set: set}).exec(function(err) {
+                    schema.getEntityModel(entity).schemaModel.where(query).update({ $set: set}).exec(function(err) {
                         resolve({'msg' : "updated"});
                     });
                 }

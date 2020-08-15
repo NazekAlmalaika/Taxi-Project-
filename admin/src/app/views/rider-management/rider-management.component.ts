@@ -67,14 +67,6 @@ export class RiderManagementComponent implements OnInit {
   createNewItem(){
     console.log("create new");
 
-    this.dbservice.createRider({
-      name : "shit",
-      mobileNumber: "09876574674",
-      email: "test@blabla.com"
-    }).subscribe((data) => {
-      console.log(data);
-    });
-
     const dialogRef = this.dialog.open(CreateRiderFormComponent, {
       minWidth: '80vw',
       data: {name: this.name, animal: this.animal}

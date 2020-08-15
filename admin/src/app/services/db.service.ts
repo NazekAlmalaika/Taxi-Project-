@@ -27,7 +27,7 @@ export class DbService {
 
   // HttpClient API get() method => Fetch Riders list
   getRiders(page, limit): Observable<Rider> {
-    return this.http.get<Rider>(this.apiURL + `/riders/${page}-${limit}`)
+    return this.http.get<Rider>(this.apiURL + `/r/${page}-${limit}`)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -36,7 +36,7 @@ export class DbService {
 
   // HttpClient API get() method => Fetch Rider
   getRider(id): Observable<Rider> {
-    return this.http.get<Rider>(this.apiURL + '/rider/' + id)
+    return this.http.get<Rider>(this.apiURL + '/r/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -44,8 +44,8 @@ export class DbService {
   }  
 
   // HttpClient API post() method => Create Rider
-  createRider(Rider): Observable<Rider> {
-    return this.http.post<Rider>(this.apiURL + '/rider/add/', JSON.stringify(Rider), this.httpOptions)
+  createRider(Rider,query): Observable<Rider> {
+    return this.http.post<Rider>(this.apiURL + '/rfg/add/', JSON.stringify({object: Rider ,query: query }), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -54,7 +54,7 @@ export class DbService {
 
   // HttpClient API put() method => Update Rider
   updateRider(id, Rider): Observable<Rider> {
-    return this.http.put<Rider>(this.apiURL + '/rider/update' + id, JSON.stringify(Rider), this.httpOptions)
+    return this.http.put<Rider>(this.apiURL + '/r/update/' + id, JSON.stringify(Rider), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -63,7 +63,7 @@ export class DbService {
 
   // HttpClient API delete() method => Delete Rider
   deleteRider(id){
-    return this.http.delete<Rider>(this.apiURL + '/Riders/' + id, this.httpOptions)
+    return this.http.delete<Rider>(this.apiURL + '/r/delete/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

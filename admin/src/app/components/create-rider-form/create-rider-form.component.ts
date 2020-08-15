@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { DbService } from 'app/services/db.service';
+import { Rider } from 'app/models/rider';
 
 export interface DialogData {
   animal: string;
@@ -59,11 +60,13 @@ export class CreateRiderFormComponent implements OnInit {
 
   onSubmit(): void{
 
-    this.dbservice.createRider({
-      name : this.getFormFieldValue('name'),
-      mobileNumber: this.getFormFieldValue('mobileNumber'),
-      email: this.getFormFieldValue('email')
-    }).subscribe((data) => {
+    var rider = new Rider();
+    rider.name = this.getFormFieldValue('name');
+    rider.mobileNumber = this.getFormFieldValue('mobileNumber');
+    rider.email = this.getFormFieldValue('email');
+
+    var query = {mobileNumber : rider.mobileNumber};
+    this.dbservice.createRider(rider,query).subscribe((data) => {
       console.log(data);
       this.committed = true;
     });
