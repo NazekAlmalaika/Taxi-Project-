@@ -79,6 +79,8 @@ export class DbService {
     ).toPromise()
   }
 
+  
+  // Billing methods
   createBillingMethod(billingMethod,query): Promise<BillingMethod> {
     return this.http.post<BillingMethod>(this.apiURL + '/bm/add/', JSON.stringify({object: billingMethod ,query: query }), this.httpOptions)
     .pipe(
@@ -86,6 +88,24 @@ export class DbService {
       catchError(this.handleError)
     ).toPromise();
   }  
+
+  // HttpClient API get() method => Fetch Riders list
+  getBillingMethods(page, limit, query): Observable<any> {
+    return this.http.post<Rider>(this.apiURL + `/bm/${limit}-${page}`, JSON.stringify({query: query}), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  countBillingMethods(query): Promise<any> {
+    return this.http.post<any>(this.apiURL + `/bm/count/`, JSON.stringify({query: query}), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).toPromise();
+  }
+
 
   // Error handling 
   handleError(error) {

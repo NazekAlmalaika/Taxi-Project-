@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { DbService } from 'app/services/db.service';
 import { Rider } from 'app/models/rider';
+import * as _ from 'lodash';
 
 export interface DialogData {
   animal: string;
@@ -21,6 +22,11 @@ export class CreateRiderFormComponent implements OnInit {
   actionType: String;
   action: String;
   committed: boolean = false;
+  userBillingsMethods = [];
+  billingsMethodsCount = 0;
+  config: any;
+  rider: Rider;
+  
 
   constructor(private fb: FormBuilder, private dbservice : DbService,
     public dialogRef: MatDialogRef<CreateRiderFormComponent>,
@@ -30,16 +36,15 @@ export class CreateRiderFormComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  ngOnInit(): void{
-    var rider = this.data.rider
-    console.log(rider);
+  async ngOnInit() {
+    this.rider = this.data.rider
+    console.log(this.rider);
     this.profileForm = this.fb.group({
-      name: [rider.name, Validators.required],
-      mobileNumber: [rider.mobileNumber, Validators.required],
-      address: [rider.address],
-      email: [rider.email,  Validators.required],
-      city: [rider.city],
-      region: [rider.region],
+      name: [this.rider.name, Validators.required],
+      mobileNumber: [this.rider.mobileNumber, Validators.required],
+      address: [this.rider.address],
+      email: [this.rider.email,  Validators.required],
+      region: [this.rider.region],
     });
 
     this.actionType = this.data.action;
@@ -55,7 +60,31 @@ export class CreateRiderFormComponent implements OnInit {
 
     console.log(this.action);
 
-    
+    if(this.viewPage()){
+      var query = {user_id : this.rider._id};
+      var countResult = await this.dbservice.countBillingMethods(query);
+      console.log(countResult);
+      this.config = {
+        itemsPerPage: 15,
+        currentPage: 1,
+        totalItems: countResult.count
+      };
+      this.billingsMethodsCount = countResult.count;
+      this.dbservice.getBillingMethods(0, 15, query).subscribe((data) => {
+        this.userBillingsMethods = _.union(this.userBillingsMethods, data);
+        console.log(data);
+      });
+    }
+  }
+
+  pageChanged(event){
+    console.log(event);
+    var query = {user_id : this.rider._id};
+    this.dbservice.getBillingMethods(event, 15, query).subscribe((data) => {
+      this.userBillingsMethods = _.union(this.userBillingsMethods, data);
+      console.log(data);
+      this.config.currentPage = event;
+    });
   }
 
   onSubmit(): void{
@@ -88,6 +117,10 @@ export class CreateRiderFormComponent implements OnInit {
       return "disabled";
     }
     return "";
+  }
+
+  getUserBillingMethods(){
+
   }
 
   
