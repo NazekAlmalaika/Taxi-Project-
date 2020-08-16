@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Billing Method</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <p class="card-category">View, Edit or Create Billing Method</p>
+                        </div>
+                        <div class="card-body">
+                            <app-check-mark-animated *ngIf="committed" ></app-check-mark-animated>
+                            <form [formGroup]="billingMethodForm" (ngSubmit)="onSubmit()" *ngIf="!committed">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="example-full-width">
+                                          <input matInput id="user"  formControlName="user" disabled>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <mat-form-field appearance="fill" color="primary" class="example-full-width">
+                                        <mat-label >paymentMethod</mat-label>
+                                        <mat-select formControlName="paymentMethod" [disabled]="action=='view'">
+                                            <mat-option  *ngFor="let pm of paymentMethods | keyvalue" value="{{pm.key}}">
+                                                    {{pm.value}}
+                                            </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+
+                                    
+                                  </div>
+                               </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                      <mat-form-field class="example-full-width">
+                                        <input matInput type="text"  formControlName="active" [disabled]="action=='view'">
+                                      </mat-form-field>
+                                    </div>
+                                </div>
+                                <button mat-raised-button type="submit" [disabled]="!billingMethodForm.valid" *ngIf="action!='view'" class="btn btn-danger pull-right">{{action}}</button>
+                            </form>
+                            <button mat-button mat-dialog-close>close</button>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+      </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+ 
+</mat-dialog-actions>

@@ -1,26 +1,70 @@
 <div class="main-content">
   <div class="container-fluid">
+
+        <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-primary d-flex justify-content-center">
+                            <p class="card-category">Search</p>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class = "row">
+                                <div class="col-lg-4 form-inline d-flex justify-content-center md-form form-sm mt-0">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    <input class="form-control form-control-sm ml-3 w-75" id="searchMobileNumber" name="searchMobileNumber" [(ngModel)]="searchMobileNumber" type="text" placeholder="mobile"
+                                        aria-label="Search">
+                                 </div>
+
+                                 <div class="col-lg-4 form-inline d-flex justify-content-center md-form form-sm mt-0">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    <input class="form-control form-control-sm ml-3 w-75" id="searchName" name="searchName" [(ngModel)]="searchName" type="text" placeholder="name"
+                                        aria-label="Search">
+                                 </div>
+
+                                 <div class="col-lg-4">
+                                 </div>
+
+
+                            </div>
+                            <div class ="row row-m-t">
+                                <div class="col-lg-12 d-flex justify-content-center">
+                                   <button class="btn btn-outline-primary btn-rounded btn-sm my-0" (click)="refreshTable()">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <p class="text-primary">results count {{resultsCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
       <div class="row">
           <div class="col-md-12">
               <div class="card">
-                  <div class="card-header card-header-tabs card-header-danger">
-                      <h4 class="card-title ">Simple Table</h4>
-                      <p class="card-category"> Here is a subtitle for this table</p>
+                  <div class="card-header card-header-tabs card-header-primary">
+                      <h4 class="card-title ">Riders</h4>
+                      <p class="card-category"> View, Modify and create Riders</p>
                       <div class="nav-tabs-navigation justify-content-center">
                             <div class="nav-tabs-wrapper ">
-                                <span class="nav-tabs-title">Actions:</span>
                                 <ul class="nav nav-tabs justify-content-center" data-tabs="tabs">
                                     <li class="nav-item">
-                                        <a mat-button class="nav-link" [routerLink]="" (click)="createNewItem()" href="" data-toggle="tab">
+                                        <!--<a mat-button class="nav-link" [routerLink]="" (click)="createNewItem()" href="" data-toggle="tab">
                                             <i class="material-icons">bug_report</i> Create New Rider
                                             <div class="ripple-container"></div>
-                                        </a>
+                                        </a> -->
+                                        <button mat-raised-button (click)="createNewItem()" color="warn" >Create New Rider</button>
+                                        
+
                                     </li>
                                 </ul>
                             </div>
                       </div>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body"  *ngIf="renderTable">
                       <div class="table-responsive">
                           <table class="table table-hover">
                               <thead class=" text-primary">
@@ -28,10 +72,13 @@
                                       select
                                   </th>
                                   <th>
+                                      Id
+                                  </th>
+                                  <th>
                                       Name
                                   </th>
                                   <th>
-                                      Country
+                                    Mobile Number
                                   </th>
                                   <th>
                                       Actions
@@ -39,7 +86,7 @@
                               </thead>
                               
                               <tbody>
-                                <tr *ngFor="let item of collection.data | paginate: config">
+                                <tr *ngFor="let item of collection | paginate: config">
                                     <td>
                                         <div class="form-check">
                                             <label class="form-check-label">
@@ -51,16 +98,24 @@
                                         </div>
                                     </td>
                                     
-                                    <td >{{item.id}}</td>
-                                    <td>{{item.value}}</td>
+                                    <td >{{item._id}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.mobileNumber}}</td>
                                     
-                                    <td class="td-actions text-right">
+                                    <td class="td-actions text-left">
                                         <button mat-raised-button type="button" (click)="editItem($event, item)" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
                                             <i class="material-icons">edit</i>
+                                        </button>
+                                        <button mat-raised-button type="button" (click)="addPayment($event, item)" matTooltip="Add Payment" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons">payment</i>
                                         </button>
                                         <button mat-raised-button type="button" (click)="removeItem($event, item)" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
                                             <i class="material-icons">close</i>
                                         </button>
+                                        <button mat-raised-button type="button" (click)="viewItem($event, item)" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons">visibility</i>
+                                        </button>
+                                        
                                     </td>
                                 </tr>
                              </tbody>

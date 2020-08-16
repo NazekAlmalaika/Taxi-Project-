@@ -2,8 +2,10 @@ var mongoose = require("mongoose");
 var options = {timestamps: true};
 
 var BillingMethodSchema = new mongoose.Schema({
-     biilingType: {type: mongoose.Schema.Types.String},
-     verified: {type: mongoose.Schema.Types.Boolean} 
+     paymentMethod: {type: mongoose.Schema.Types.String},
+     verified: {type: mongoose.Schema.Types.Boolean}, 
+     active: {type: mongoose.Schema.Types.Boolean},
+     user_id : {type: mongoose.Schema.Types.String}
   }, options);
 
 

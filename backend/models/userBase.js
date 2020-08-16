@@ -14,10 +14,14 @@ var UserBaseSchema = new mongoose.Schema({
     region: {type: mongoose.Schema.Types.String},
     onilne: {type: mongoose.Schema.Types.Boolean},
     address: {type: mongoose.Schema.Types.String},
-    billing: {type: BillingSchema},
-    billingMethod: [BillingMethodSchema],
-    bookings: [BookingSchema],
-    defaultBillingMethod : {type: BillingMethodSchema}
+    //billing: {type: BillingSchema},
+    //billingMethod: [BillingMethodSchema],
+    //bookings: [BookingSchema],
+    //defaultBillingMethod : {type: BillingMethodSchema}
+    billing_id: {type: mongoose.Schema.Types.String},
+    billingMethods_id: [mongoose.Schema.Types.String],
+    bookings_id: [mongoose.Schema.Types.String],
+    defaultBillingMethod_id : {type: mongoose.Schema.Types.String}
   }, options);
 
 var UserBase = mongoose.model('UserBase', UserBaseSchema);

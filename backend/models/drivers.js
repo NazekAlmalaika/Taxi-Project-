@@ -6,8 +6,8 @@ var ShiftSchema = require('./shift').ShiftSchema;
 
 var DriverSchema = new mongoose.Schema({
     plateNumber :{ type: mongoose.Schema.Types.String},
-    cap: {type: CapSchema},
-    shift: {type: ShiftSchema}
+    cap_id: {type: mongoose.Schema.Types.String},
+    shift_id: {type: mongoose.Schema.Types.String}
   }, UserModel.defaultOptions);
 
 

@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { CreateRiderFormComponent } from './create-rider-form/create-rider-form.component';
+import { FooterComponent } from './nav/footer/footer.component';
+import { NavbarComponent } from './nav/navbar/navbar.component';
+import { SidebarComponent } from './nav/sidebar/sidebar.component';
+import { CreateRiderFormComponent } from './forms/create-rider-form/create-rider-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CheckMarkAnimatedComponent } from './shared/check-mark-animated/check-mark-animated.component';
+import { CreateBillingMethodFormComponent } from './forms/create-billing-method-form/create-billing-method-form.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { CheckMarkAnimatedComponent } from './shared/check-mark-animated/check-m
     MatTooltipModule,
     NgxPaginationModule,
     MatDialogModule,
+    MatTabsModule,
     ReactiveFormsModule,
     FormsModule
   ],
@@ -37,7 +40,8 @@ import { CheckMarkAnimatedComponent } from './shared/check-mark-animated/check-m
     NavbarComponent,
     SidebarComponent,
     CreateRiderFormComponent,
-    CheckMarkAnimatedComponent
+    CheckMarkAnimatedComponent,
+    CreateBillingMethodFormComponent
   ],
   exports: [
     FooterComponent,

@@ -10,7 +10,6 @@ export interface DialogData {
   name: string;
 }
 
-
 @Component({
   selector: 'app-create-rider-form',
   templateUrl: './create-rider-form.component.html',
@@ -32,15 +31,15 @@ export class CreateRiderFormComponent implements OnInit {
   }
 
   ngOnInit(): void{
+    var rider = this.data.rider
+    console.log(rider);
     this.profileForm = this.fb.group({
-      name: [this.data.name, Validators.required],
-      mobileNumber: [this.data.mobileNumber, Validators.required],
-      address: [this.data.address, Validators.required],
-      email: [this.data.email],
-      city: [this.data.city],
-      country: [this.data.country],
-      postalCode: [this.data.postalCode]
-    
+      name: [rider.name, Validators.required],
+      mobileNumber: [rider.mobileNumber, Validators.required],
+      address: [rider.address],
+      email: [rider.email,  Validators.required],
+      city: [rider.city],
+      region: [rider.region],
     });
 
     this.actionType = this.data.action;
@@ -52,25 +51,23 @@ export class CreateRiderFormComponent implements OnInit {
       this.action = "view";
     } else {
       this.action = "Create";
-      
     }
 
     console.log(this.action);
+
+    
   }
 
   onSubmit(): void{
-
     var rider = new Rider();
     rider.name = this.getFormFieldValue('name');
     rider.mobileNumber = this.getFormFieldValue('mobileNumber');
     rider.email = this.getFormFieldValue('email');
-
     var query = {mobileNumber : rider.mobileNumber};
-    this.dbservice.createRider(rider,query).subscribe((data) => {
+    this.dbservice.createRider(rider,query).then((data) => {
       console.log(data);
       this.committed = true;
     });
-
   }
 
   get name() { return this.profileForm.get('name'); }
@@ -79,7 +76,21 @@ export class CreateRiderFormComponent implements OnInit {
     return this.profileForm.get(fieldname).value; 
   }
 
+  viewPage(){
+    if (this.action == "view"){
+      return true;
+    }
+    return false;
+  }
 
+  disabledField(){
+    if (this.action == "view"){
+      return "disabled";
+    }
+    return "";
+  }
+
+  
 
 }
 

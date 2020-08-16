@@ -19,7 +19,7 @@ import { AdminLayoutComponent } from './views/layouts/admin-layout/admin-layout.
 import { AdminLayoutModule} from './views/layouts/admin-layout/admin-layout.module';
 import { DbService } from './services/db.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { CreateRiderFormComponent } from './components/create-rider-form/create-rider-form.component';
+import { CreateRiderFormComponent } from './components/forms/create-rider-form/create-rider-form.component';
 
 @NgModule({
   imports: [
@@ -40,7 +40,6 @@ import { CreateRiderFormComponent } from './components/create-rider-form/create-
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

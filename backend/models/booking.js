@@ -8,7 +8,8 @@ var BookingSchema = new mongoose.Schema({
     currency: {type: mongoose.Schema.Types.String},
     startTime: {type: mongoose.Schema.Types.Date},
     estimatedEndTime: {type: mongoose.Schema.Types.Date},
-    trip: {type: TripSchema}
+    //trip: {type: TripSchema}
+    trip_id: {type: mongoose.Schema.Types.String}
 
 }, TripBaseModel.defaultOptions);
 
