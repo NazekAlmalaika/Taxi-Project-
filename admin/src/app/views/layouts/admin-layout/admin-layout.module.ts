@@ -14,6 +14,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import { RiderManagementComponent } from '../../../views/rider-management/rider-management.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DriverManagementComponent } from 'app/views/driver-management/driver-management.component';
+import { BillingManagementComponent } from 'app/views/billing-management/billing-management.component';
+import { BookingManagementComponent } from 'app/views/booking-management/booking-management.component';
 
 @NgModule({
   imports: [
@@ -32,6 +35,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   declarations: [
     RiderManagementComponent,
+    DriverManagementComponent,
+    BillingManagementComponent,
+    BookingManagementComponent
   ]
 })
 

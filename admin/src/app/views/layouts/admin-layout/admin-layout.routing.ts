@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { RiderManagementComponent } from '../../rider-management/rider-management.component';
+import { DriverManagementComponent } from 'app/views/driver-management/driver-management.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -46,6 +47,7 @@ export const AdminLayoutRoutes: Routes = [
     //     }]
     // }
     { path: 'rider-management',        component: RiderManagementComponent },
+    { path: 'driver-management',        component: DriverManagementComponent },
 
    
 ];

@@ -20,6 +20,9 @@ import { AdminLayoutModule} from './views/layouts/admin-layout/admin-layout.modu
 import { DbService } from './services/db.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CreateRiderFormComponent } from './components/forms/create-rider-form/create-rider-form.component';
+import { DriverManagementComponent } from './views/driver-management/driver-management.component';
+import { BillingManagementComponent } from './views/billing-management/billing-management.component';
+import { BookingManagementComponent } from './views/booking-management/booking-management.component';
 
 @NgModule({
   imports: [

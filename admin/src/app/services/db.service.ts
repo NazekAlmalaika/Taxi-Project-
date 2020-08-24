@@ -4,6 +4,7 @@ import { Rider } from '../models/rider';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { BillingMethod } from 'app/models/billing-method';
+import { Driver } from 'app/models/driver';
 
 @Injectable({
   providedIn: 'root'
@@ -106,6 +107,62 @@ export class DbService {
     ).toPromise();
   }
 
+
+
+  //Driver methods
+
+  // HttpClient API get() method => Fetch Riders list
+  getDrivers(page, limit, query): Observable<any> {
+    return this.http.post<Driver>(this.apiURL + `/d/${limit}-${page}`, JSON.stringify({query: query}), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  // HttpClient API get() method => Fetch Rider
+  getDriver(id): Promise<Driver> {
+    return this.http.get<Driver>(this.apiURL + '/d/' + id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).toPromise();
+  }
+  
+  countDrivers(query): Promise<any> {
+    return this.http.post<any>(this.apiURL + `/d/count/`, JSON.stringify({query: query}), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).toPromise();
+  }
+
+  // HttpClient API post() method => Create Rider
+  createDriver(Driver,query): Promise<Driver> {
+    return this.http.post<Driver>(this.apiURL + '/d/add/', JSON.stringify({object: Driver ,query: query }), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).toPromise();
+  }  
+
+  // HttpClient API put() method => Update Rider
+  updateDriver(id, Driver): Promise<Driver> {
+    return this.http.put<Driver>(this.apiURL + '/d/update/' + id, JSON.stringify(Driver), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).toPromise();
+  }
+
+  // HttpClient API delete() method => Delete Rider
+  deleteDriver(id): Promise<Driver> {
+    return this.http.delete<Driver>(this.apiURL + '/d/delete/' + id, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).toPromise()
+  }
 
   // Error handling 
   handleError(error) {

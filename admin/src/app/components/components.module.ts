@@ -18,6 +18,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CheckMarkAnimatedComponent } from './shared/check-mark-animated/check-mark-animated.component';
 import { CreateBillingMethodFormComponent } from './forms/create-billing-method-form/create-billing-method-form.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { CreateDriverFormComponent } from './forms/create-driver-form/create-driver-form.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     SidebarComponent,
     CreateRiderFormComponent,
     CheckMarkAnimatedComponent,
-    CreateBillingMethodFormComponent
+    CreateBillingMethodFormComponent,
+    CreateDriverFormComponent
   ],
   exports: [
     FooterComponent,
