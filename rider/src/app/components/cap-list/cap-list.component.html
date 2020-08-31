@@ -1,0 +1,50 @@
+<ion-slides #capSlides id="capSlides">
+  <ion-slide *ngFor="let cap of capList">
+        <div class="course">
+          <div class="course-preview">
+            <h6>{{cap.name}}</h6>
+            <h2>{{cap.name}}</h2>
+            <a href="#">View profile <i class="fas fa-chevron-right"></i></a>
+          </div>
+          <div class="course-info">
+            <div class="progress-container">
+              <div class="progress"></div>
+              <span class="progress-text">
+                6/9 Challenges
+              </span>
+            </div>
+            <h6>Cap Type</h6>
+            <h2>Light cap</h2>
+            <button class="btn" (click)="book()">Book</button>
+            <ion-button fill="clear" (click)="next()">next</ion-button>
+            <ion-button fill="clear" (click)="prev()">prev</ion-button>
+          </div>
+          
+        </div>
+  </ion-slide>
+
+  <ion-slide *ngIf="!capList || capList.length == 0">
+    <div class="course">
+      <div class="course-preview">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </div>
+      <div class="course-info">
+        <div class="progress-container">
+          <div class="progress"></div>
+              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      
+        </div>
+        <h6> <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></h6>
+        <h2> <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></h2>
+        <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+      </div>
+      
+    </div>
+
+  
+  </ion-slide>
+
+</ion-slides>

@@ -12,7 +12,7 @@ var UserBaseSchema = new mongoose.Schema({
     mobileNumber: { type: mongoose.Schema.Types.Number,index: true, unique: true},
     email:{type: mongoose.Schema.Types.String},
     region: {type: mongoose.Schema.Types.String},
-    onilne: {type: mongoose.Schema.Types.Boolean},
+    online: {type: mongoose.Schema.Types.Boolean},
     address: {type: mongoose.Schema.Types.String},
     //billing: {type: BillingSchema},
     //billingMethod: [BillingMethodSchema],

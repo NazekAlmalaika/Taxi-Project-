@@ -27,12 +27,13 @@
   ngDefaultControl
   name = "mainMap"
   ></app-google-maps>
-
+ 
 </ion-content>
 
 <ion-footer>
   <div class="content">    
-  
+    <cap-list *ngIf="displayroute"></cap-list>
+    
     <ion-item class="source" lines="none" mode="md" (click)="searchLocation('source')"> 
        <ion-input pattern="search" placeholder="source" [(ngModel)]="sourceLocation" ionChange="">
          <ion-icon name="navigate-outline"></ion-icon>
