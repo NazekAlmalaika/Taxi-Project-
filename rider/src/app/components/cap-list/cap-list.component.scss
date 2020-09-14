@@ -28,16 +28,16 @@
 .course-preview {
 	background-color: #2A265F;
 	color: #fff;
-	padding: 30px;
+	padding: 15px;
 	max-width: 250px;
 }
 
 .course-preview a {
 	color: #fff;
 	display: inline-block;
-	font-size: 9px;
+	font-size: 8px;
 	opacity: 0.6;
-	margin-top: 30px;
+	margin-top: 15px;
 	text-decoration: none;
 }
 
@@ -49,7 +49,7 @@
 
 .progress-container {
 	position: absolute;
-	top: 30px;
+	top: 0px;
 	right: 30px;
 	text-align: right;
 	width: 50%;
@@ -74,7 +74,7 @@
 }
 
 .progress-text {
-	font-size: 8px;
+	font-size: 5px;
 	opacity: 0.6;
 	letter-spacing: 1px;
 }
@@ -85,10 +85,10 @@
 	border-radius: 50px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	color: #fff;
-	font-size: 16px;
+	font-size: 12px;
 	padding: 12px 25px;
 	position: absolute;
-	bottom: 30px;
-	right: 30px;
+	bottom: 15px;
+	right: 15px;
 	letter-spacing: 1px;
 }

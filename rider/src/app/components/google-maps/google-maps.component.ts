@@ -53,7 +53,7 @@ export class GoogleMapsComponent implements OnInit {
         directionsRenderer.setMap(this.map);
         if(sourcePlace && destinationPlace){
           let sourceLatLng = new google.maps.LatLng({lat: sourcePlace.geometry.location.lat, lng: sourcePlace.geometry.location.lng}); 
-          let destinationLatLng = new google.maps.LatLng({lat: destinationPlace.geometry.location.lng, lng: destinationPlace.geometry.location.lng}); 
+          let destinationLatLng = new google.maps.LatLng({lat: destinationPlace.geometry.location.lat, lng: destinationPlace.geometry.location.lng}); 
           this.displayRoute(sourceLatLng,destinationLatLng,directionsService,directionsRenderer)
         }
       
