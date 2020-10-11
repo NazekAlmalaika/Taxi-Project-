@@ -1,0 +1,48 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4"></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <mat-card>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item-active">
+                <a class="nav-link" routerLink="/signup">Create A new account</a>
+              </li>
+          </ul> 
+          <div class="alert-danger">{{serverErrorMessages}}</div>
+          <div class="success" *ngIf= "showSuccessMessage">Registered successfully</div>
+          <mat-card-content>
+            <form id="formData" #registerForm="ngForm" (ngSubmit)= "postUser(registerForm)">
+              <mat-form-field>
+                <input matInput placeholder="name" name="name" type="text" ngModel #name="ngModel" required  minlength="6" >
+                <mat-error *ngIf= "name.hasError('required')">Name is required</mat-error>
+                <mat-error *ngIf= "name.hasError('minlength')">Name minlength is 6 digits</mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <input matInput placeholder="email" name="email" type="email" ngModel #email="ngModel" required [pattern]= "emailRegex">
+                <mat-error *ngIf= "email.hasError('required')" >Email is required</mat-error>
+                <mat-error *ngIf= "email.hasError('pattern')" >Email address is invalid</mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <input matInput placeholder="password" name="password" type="password" ngModel #password="ngModel" required minlength="6">
+                <mat-error *ngIf= "password.hasError('required')">password is required</mat-error>
+                <mat-error *ngIf= "password.hasError('minlength')">password minlength is 8 digits</mat-error>
+              </mat-form-field>
+              <br>
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item-active">
+                  <a class="nav-link" routerLink="/signin" routerLinkActive="active" data-toggle="modal">Sign In</a>
+                </li>
+            </ul>
+              <br>
+              <input type="submit" class="btn btn-primary" value="Submit" mat-button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <div class="col-lg-4 col-md-4 col-sm-4"></div>
+      </div>
+    </div>
+  </div>
+</div>

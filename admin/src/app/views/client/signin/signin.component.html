@@ -1,0 +1,41 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4"></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <mat-card>
+         
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item-active">
+                <a class="nav-link" routerLink="/signin">Sign In</a>
+              </li>
+          </ul>
+           <div class="alert-danger">{{serverErrorMessages}}</div>
+          <mat-card-content>
+            <form id=formData  #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+              <mat-form-field>
+                <input matInput placeholder="email" name="email" type="email" ngModel>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <input matInput placeholder="password" name="password" type="password" ngModel>
+              </mat-form-field>
+              <br>
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item-active">
+                  <a class="nav-link " routerLink="/forget-password" routerLinkActive="active">Forget Password</a>
+                </li>
+                <li class="nav-item-active">
+                  <a class="nav-link " routerLink="/signup" routerLinkActive="active" data-toggle="modal">Create An Account</a>
+                </li>
+            </ul>
+              <br>
+              <input type="submit" class="btn btn-primary" value="Submit" mat-button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <div class="col-lg-4 col-md-4 col-sm-4"></div>
+      </div>
+    </div>
+  </div>
+</div>

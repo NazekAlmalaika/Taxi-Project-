@@ -4,6 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule} from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from "@angular/material/input";
+
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -12,20 +20,21 @@ import { AppComponent } from './app.component';
 
 
 import { HttpClientModule } from '@angular/common/http';
-import {
-  AgmCoreModule
-} from '@agm/core';
+import {  AgmCoreModule} from '@agm/core';
 import { AdminLayoutComponent } from './views/layouts/admin-layout/admin-layout.component';
 import { AdminLayoutModule} from './views/layouts/admin-layout/admin-layout.module';
 import { DbService } from './services/db.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { CreateRiderFormComponent } from './components/forms/create-rider-form/create-rider-form.component';
-import { DriverManagementComponent } from './views/driver-management/driver-management.component';
-import { BillingManagementComponent } from './views/billing-management/billing-management.component';
-import { BookingManagementComponent } from './views/booking-management/booking-management.component';
+
+
+
+
+
+
 
 @NgModule({
   imports: [
+    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -36,13 +45,20 @@ import { BookingManagementComponent } from './views/booking-management/booking-m
     HttpClientModule,
     AdminLayoutModule,
     NgxPaginationModule,
+    MatCardModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatInputModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
+    AdminLayoutComponent
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

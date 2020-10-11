@@ -76,8 +76,7 @@ export class Tab1Page {
     }
 
     if( this.sourceLocationPlaceId  && this.destinationLocationPlaceId) {
-        this.displayroute = true;
-        
+        this.displayroute = true; ;
     }
     
   }

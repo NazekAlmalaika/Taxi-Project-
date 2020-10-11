@@ -7,14 +7,16 @@ export class User {
     mobileNumber: Number;
     email: String;
     region: String;
-    online: Boolean;
+    onilne: Boolean;
     address: String;
-    createdAt: Date;
-    updatedAt: Date;
+    //createdAt: Date;
+    //updatedAt: Date;
     billing_id: String;
     billingMethods_id: [String];
     bookings_id: [String];
     defaultBillingMethod_id : String;
+    emailToken: String;
+  isVerified: Boolean;
 
     constructor(){
 

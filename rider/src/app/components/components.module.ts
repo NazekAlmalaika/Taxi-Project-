@@ -7,22 +7,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponent } from './explore-container/explore-container.component';
-import { CapListComponent } from './cap-list/cap-list.component';
 
 @NgModule({
   declarations: [
     GoogleMapsComponent,
     SearchInMapsComponent,
     PlacesSearchResultsComponent,
-    ExploreContainerComponent,
-    CapListComponent
+    ExploreContainerComponent
   ],
   exports: [
     GoogleMapsComponent,
     SearchInMapsComponent,
     PlacesSearchResultsComponent,
-    ExploreContainerComponent,
-    CapListComponent
+    ExploreContainerComponent
   ],
   imports: [
     CommonModule, 

@@ -18,6 +18,10 @@ import { DriverManagementComponent } from 'app/views/driver-management/driver-ma
 import { BillingManagementComponent } from 'app/views/billing-management/billing-management.component';
 import { BookingManagementComponent } from 'app/views/booking-management/booking-management.component';
 
+
+
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -37,7 +41,9 @@ import { BookingManagementComponent } from 'app/views/booking-management/booking
     RiderManagementComponent,
     DriverManagementComponent,
     BillingManagementComponent,
-    BookingManagementComponent
+    BookingManagementComponent,
+    
+  
   ]
 })
 

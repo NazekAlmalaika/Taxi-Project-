@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { RouterModule, Router } from '@angular/router';
+
+
 declare const $: any;
 declare interface RouteInfo {
     path: string;
@@ -8,8 +11,14 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/rider-management',        title: 'Rider Management',  icon:'person', class: ''  },
-    { path: '/driver-management',        title: 'Driver Management',  icon:'person', class: ''  }
+    { path: '/rider-management',       title: 'Rider Management',  icon:'person', class: ''  },
+    { path: '/driver-management',        title: 'Driver Management',  icon:'person', class: ''  },
+    { path: '/booking-management',        title: 'Booking Management',  icon:'book', class: ''}
+  
+  
+    
+   
+    
 ];
 
 @Component({

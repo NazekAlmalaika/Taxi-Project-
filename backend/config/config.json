@@ -1,0 +1,4 @@
+{
+    "JWT_SECRET": "secret#mysecret",
+    "JWT_EXP" :"2m"
+}
